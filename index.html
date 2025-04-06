@@ -11,23 +11,28 @@
       margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Fira Code', monospace;
     }
-    body {
+    html, body {
+      scroll-behavior: smooth;
       background: #0d0d0d;
       color: #f8f8f8;
-      line-height: 1.6;
+      overflow-x: hidden;
     }
-    header {
+    section, header {
       height: 100vh;
+      padding: 3rem 10%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
+    }
+    header {
       background: radial-gradient(circle at center, #1a1a1a, #000);
+      text-align: center;
+      position: relative;
     }
     h1 {
       font-size: 3rem;
       color: #00ffee;
+      z-index: 2;
     }
     .typing {
       color: #58a6ff;
@@ -43,15 +48,30 @@
       border-radius: 5px;
       text-decoration: none;
       margin-top: 20px;
+      z-index: 2;
       transition: all 0.3s ease;
     }
     .btn:hover {
       background: #00ffee;
       color: #000;
     }
-    section {
-      padding: 3rem 10%;
+    .gear {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e8/Cogwheel.svg') no-repeat center;
+      background-size: contain;
+      animation: rotate 10s linear infinite;
+      opacity: 0.2;
     }
+    .gear1 { top: 10%; left: 5%; animation-duration: 15s; }
+    .gear2 { top: 50%; right: 5%; animation-duration: 10s; }
+    .gear3 { bottom: 10%; left: 45%; animation-duration: 20s; }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
     .section-title {
       font-size: 2rem;
       margin-bottom: 1rem;
@@ -90,7 +110,7 @@
 </head>
 <body>
 
-<header>
+<header id="section1">
   <h1>Hi, I'm Maneet Chatterjee</h1>
   <div class="typing" id="typing-text"></div>
   <a href="resume.pdf" class="btn" target="_blank">View Resume</a>
@@ -99,30 +119,36 @@
     <a href="https://linkedin.com/in/maneetchatterjee" target="_blank"><i class="fab fa-linkedin"></i></a>
     <a href="mailto:maneetchatterjee@email.com"><i class="fas fa-envelope"></i></a>
   </div>
+
+  <!-- Rotating Gears -->
+  <div class="gear gear1"></div>
+  <div class="gear gear2"></div>
+  <div class="gear gear3"></div>
 </header>
 
-<section>
+<section id="section2">
   <div class="section-title">About Me</div>
-  <p>I'm a Mechanical Engineering student at IIEST Shibpur with a brain wired for problem-solving and a heart that beats for the cosmos. From finite elements to infinite galaxies, I'm chasing answers with equations and code. Currently exploring the wild blend of spiking neural networks, solar energy systems, and hydrogen production.</p>
+  <p>I'm a Mechanical Engineering student at IIEST Shibpur. Bridging machine dynamics and AI logic, I’m obsessed with systems that spin, move, and think. Whether it’s hydrogen tech or decoding exoplanet signals—I'm your guy.</p>
 </section>
 
-<section>
+<section id="section3">
   <div class="section-title">Featured Project: ExoSpikeNet</div>
   <div class="project">
-    <p><strong>ExoSpikeNet</strong> is a cutting-edge research project I co-authored, where we use Spiking Neural Networks to detect exoplanets from Kepler K2 light curves. It captures subtle temporal patterns better than traditional models, pushing the envelope in astro-AI research.</p>
+    <p><strong>ExoSpikeNet</strong>: Spiking Neural Networks meet the stars. I co-developed this novel AI model to analyze K2 light curves and find alien planets faster than traditional methods.</p>
     <p><a href="https://arxiv.org/abs/your-paper-link" target="_blank" class="btn">Read Paper</a></p>
   </div>
 </section>
 
-<section>
+<section id="section4">
   <div class="section-title">Contact</div>
-  <p>Let’s build rockets, revolutionize energy, or just talk life. Slide into my inbox or stalk me online—I’m cool with both 😎</p>
+  <p>Want to brainstorm future tech, space propulsion, or just vibe over Feynman quotes? Hit me up.</p>
 </section>
 
 <footer>
-  &copy; 2025 Maneet Chatterjee. Powered by cosmic ambition 🚀
+  &copy; 2025 Maneet Chatterjee. Made with gears, caffeine, and a burning desire to build 🚀
 </footer>
 
+<!-- Typewriter -->
 <script>
   const textArray = ["Mechanical Mind", "Coding Nerd", "Exoplanet Hunter", "Spiking Neural Net Whisperer", "Hydrogen Enthusiast"];
   let i = 0, j = 0, currentText = "", isDeleting = false;
@@ -138,10 +164,20 @@
         if (!isDeleting) i = (i + 1) % textArray.length;
       }
       document.getElementById("typing-text").textContent = currentText;
-      setTimeout(type, isDeleting ? 50 : 100);
+      setTimeout(type, isDeleting ? 40 : 100);
     }
   }
   type();
+</script>
+
+<!-- Auto Page Scroll -->
+<script>
+  const sections = ["section1", "section2", "section3", "section4"];
+  let secIndex = 0;
+  setInterval(() => {
+    secIndex = (secIndex + 1) % sections.length;
+    document.getElementById(sections[secIndex]).scrollIntoView({ behavior: 'smooth' });
+  }, 8000); // 8 seconds per section
 </script>
 
 </body>
