@@ -3,182 +3,189 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maneet Chatterjee | M-Chat</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Fira Code', monospace;
-    }
-    html, body {
-      scroll-behavior: smooth;
-      background: #0d0d0d;
-      color: #f8f8f8;
-      overflow-x: hidden;
-    }
-    section, header {
-      height: 100vh;
-      padding: 3rem 10%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    header {
-      background: radial-gradient(circle at center, #1a1a1a, #000);
-      text-align: center;
-      position: relative;
-    }
-    h1 {
-      font-size: 3rem;
-      color: #00ffee;
-      z-index: 2;
-    }
-    .typing {
-      color: #58a6ff;
-      font-size: 1.2rem;
-      margin: 1rem 0;
-      min-height: 1.5em;
-    }
-    .btn {
-      padding: 10px 20px;
-      border: 2px solid #00ffee;
-      background: transparent;
-      color: #00ffee;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-top: 20px;
-      z-index: 2;
-      transition: all 0.3s ease;
-    }
-    .btn:hover {
-      background: #00ffee;
-      color: #000;
-    }
-    .gear {
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e8/Cogwheel.svg') no-repeat center;
-      background-size: contain;
-      animation: rotate 10s linear infinite;
-      opacity: 0.2;
-    }
-    .gear1 { top: 10%; left: 5%; animation-duration: 15s; }
-    .gear2 { top: 50%; right: 5%; animation-duration: 10s; }
-    .gear3 { bottom: 10%; left: 45%; animation-duration: 20s; }
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
+  <title>Maneet Chatterjee | Portfolio</title>
+  <!-- Google Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <!-- Particles.js (background) -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- Typed.js (typewriter) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #00ffee;
+  <style>
+    /* Reset & Base */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+    html, body { width:100%; height:100%; overflow-x:hidden; background:#0d0d0d; color:#f0f0f0; }
+    a { color: inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+
+    /* Particles Canvas */
+    #particles-js { position:fixed; width:100%; height:100%; z-index:-1; top:0; left:0; }
+
+    /* Container */
+    .section { padding:100px 5%; position:relative; }
+    h1, h2, h3 { margin-bottom:1rem; color:#00ffee; }
+    p { line-height:1.6; margin-bottom:1rem; }
+
+    /* Hero */
+    #hero {
+      height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column;
+      text-align:center; background:rgba(0,0,0,0.5);
     }
-    .project {
-      background: #121212;
-      padding: 1.5rem;
-      border-radius: 10px;
-      margin-top: 1rem;
-    }
-    .socials {
-      margin-top: 2rem;
-    }
-    .socials a {
-      margin: 0 10px;
-      color: #ccc;
-      font-size: 1.5rem;
-      transition: color 0.3s;
-    }
-    .socials a:hover {
-      color: #00ffee;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #111;
-      font-size: 0.9rem;
-      color: #777;
-    }
-    @media (max-width: 768px) {
-      h1 { font-size: 2.2rem; }
-      .typing { font-size: 1rem; }
-    }
+    #hero img { width:180px; height:180px; border-radius:50%; border:4px solid #00ffee; margin-bottom:1rem; }
+    #hero .btn { margin-top:1rem; padding:12px 24px; border:2px solid #00ffee; border-radius:4px;
+      color:#00ffee; transition:all .3s; }
+    #hero .btn:hover { background:#00ffee; color:#0d0d0; }
+
+    /* Social Icons */
+    .socials { margin-top:1.5rem; }
+    .socials a { margin:0 10px; font-size:1.5rem; transition:color .3s; }
+    .socials a:hover { color:#58a6ff; }
+
+    /* Sections */
+    .section-title { text-align:center; font-size:2.2rem; margin-bottom:2rem; position:relative; }
+    .section-title::after { content:''; width:80px; height:4px; background:#00ffee; display:block; margin:8px auto 0; }
+
+    /* About */
+    #about .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center; }
+    #about img { border-radius:10px; box-shadow:0 0 20px rgba(0,255,238,.3); }
+    @media(max-width:768px) { #about .about-grid { grid-template-columns:1fr; } }
+
+    /* Tech Stack */
+    .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1rem; text-align:center; }
+    .tech-grid img { width:80px; margin:auto; }
+
+    /* Projects */
+    .projects { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .project-card { background:#121212; border-radius:10px; overflow:hidden; box-shadow:0 0 20px rgba(0,0,0,.5); transition:transform .3s; }
+    .project-card:hover { transform:translateY(-5px); }
+    .project-card img { width:100%; height:180px; object-fit:cover; }
+    .project-card .content { padding:1rem; }
+    @media(max-width:768px) { .projects { grid-template-columns:1fr; } }
+
+    /* Stats */
+    .stats img { margin:0.5rem; border-radius:10px; }
+
+    /* Footer */
+    footer { text-align:center; padding:2rem 0; background:#111; font-size:0.9rem; color:#777; margin-top:3rem; }
   </style>
 </head>
+
 <body>
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
 
-<header id="section1">
-  <h1>Hi, I'm Maneet Chatterjee</h1>
-  <div class="typing" id="typing-text"></div>
-  <a href="resume.pdf" class="btn" target="_blank">View Resume</a>
-  <div class="socials">
-    <a href="https://github.com/maneetchatterjee" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://linkedin.com/in/maneetchatterjee" target="_blank"><i class="fab fa-linkedin"></i></a>
-    <a href="mailto:maneetchatterjee@email.com"><i class="fas fa-envelope"></i></a>
-  </div>
+  <!-- Hero Section -->
+  <header id="hero">
+    <img src="./profile.jpg" alt="Profile Picture" />
+    <h1>Hi, I'm <span style="color:#58a6ff">Maneet Chatterjee</span></h1>
+    <h3><span id="typed-text"></span></h3>
+    <a href="resume.pdf" class="btn" target="_blank">View Resume</a>
+    <div class="socials" data-aos="fade-up">
+      <a href="https://github.com/maneet2004" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/maneet-chatterjee-778441190" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:mphys2022@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://x.com/maneet2018" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.kaggle.com/maneetchatterjee" target="_blank"><i class="fab fa-kaggle"></i></a>
+    </div>
+  </header>
 
-  <!-- Rotating Gears -->
-  <div class="gear gear1"></div>
-  <div class="gear gear2"></div>
-  <div class="gear gear3"></div>
-</header>
+  <!-- About Section -->
+  <section id="about" class="section" data-aos="fade-right">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div>
+        <p>🎓 <strong>3rd Year B.Tech, Mechanical Engineering</strong> @ IIEST Shibpur</p>
+        <p>🤖 Building real-time robotics systems, digital twins & intelligent control pipelines.</p>
+        <p>🧠 Applying <strong>ML/DL</strong> & <strong>Quantum Computing</strong> in IoT, automation, and physics-based simulations.</p>
+        <p>🚀 Internships & Projects in Industrial IoT, Robotic Simulations, Digital Manufacturing.</p>
+      </div>
+      <img src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif" alt="Robotics GIF" />
+    </div>
+  </section>
 
-<section id="section2">
-  <div class="section-title">About Me</div>
-  <p>I'm a Mechanical Engineering student at IIEST Shibpur. Bridging machine dynamics and AI logic, I’m obsessed with systems that spin, move, and think. Whether it’s hydrogen tech or decoding exoplanet signals—I'm your guy.</p>
-</section>
+  <!-- Tech Stack Section -->
+  <section id="tech" class="section" data-aos="fade-left">
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="tech-grid">
+      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+      <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++"/>
+      <img src="https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ros&logoColor=white" alt="ROS"/>
+      <img src="https://img.shields.io/badge/MQTT-FF6F00?style=for-the-badge&logo=mqtt&logoColor=white" alt="MQTT"/>
+      <img src="https://img.shields.io/badge/InfluxDB-22ADF6?style=for-the-badge&logo=influxdb&logoColor=white" alt="InfluxDB"/>
+      <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white" alt="Grafana"/>
+      <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+      <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow"/>
+      <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV"/>
+    </div>
+  </section>
 
-<section id="section3">
-  <div class="section-title">Featured Project: ExoSpikeNet</div>
-  <div class="project">
-    <p><strong>ExoSpikeNet</strong>: Spiking Neural Networks meet the stars. I co-developed this novel AI model to analyze K2 light curves and find alien planets faster than traditional methods.</p>
-    <p><a href="https://arxiv.org/abs/your-paper-link" target="_blank" class="btn">Read Paper</a></p>
-  </div>
-</section>
+  <!-- Projects Section -->
+  <section id="projects" class="section" data-aos="fade-up">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects">
+      <div class="project-card" data-aos="zoom-in">
+        <img src="https://i.gifer.com/embedded/download/7XY.gif" alt="Vibration Monitor GIF"/>
+        <div class="content">
+          <h3>🛠️ IoT-Based Vibration Monitor</h3>
+          <p>ESP32 → MQTT & WebSockets → InfluxDB & Grafana dashboards for predictive maintenance.</p>
+          <a href="#" class="btn">View Repo</a>
+        </div>
+      </div>
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+        <img src="https://i.gifer.com/embedded/download/3o6ZsU1WNFd45E6PJK.gif" alt="Robotic Sorting GIF"/>
+        <div class="content">
+          <h3>🤖 Robotic Sorting System</h3>
+          <p>Real-time pick-and-place using camera, computer vision & physics-based simulation (Blender/Isaac).</p>
+          <a href="#" class="btn">View Demo</a>
+        </div>
+      </div>
+      <!-- Add more project cards as needed -->
+    </div>
+  </section>
 
-<section id="section4">
-  <div class="section-title">Contact</div>
-  <p>Want to brainstorm future tech, space propulsion, or just vibe over Feynman quotes? Hit me up.</p>
-</section>
+  <!-- GitHub Stats Section -->
+  <section id="stats" class="section" data-aos="fade-up">
+    <h2 class="section-title">GitHub Stats</h2>
+    <div class="stats" style="text-align:center;">
+      <img src="https://github-readme-stats.vercel.app/api?username=maneet2004&show_icons=true&theme=tokyonight&count_private=true" alt="GitHub Stats" />
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=maneet2004&layout=compact&theme=tokyonight" alt="Top Languages" />
+    </div>
+  </section>
 
-<footer>
-  &copy; 2025 Maneet Chatterjee. Made with gears, caffeine, and a burning desire to build 🚀
-</footer>
+  <!-- Contact Section -->
+  <section id="contact" class="section" data-aos="fade-up">
+    <h2 class="section-title">Get In Touch</h2>
+    <p style="text-align:center;">✉️ <a href="mailto:mphys2022@gmail.com">mphys2022@gmail.com</a> •  
+      🐦 <a href="https://x.com/maneet2018">@maneet2018</a> •  
+      🔗 <a href="https://linkedin.com/in/maneet-chatterjee-778441190">LinkedIn</a>
+    </p>
+  </section>
 
-<!-- Typewriter -->
-<script>
-  const textArray = ["Mechanical Mind", "Coding Nerd", "Exoplanet Hunter", "Spiking Neural Net Whisperer", "Hydrogen Enthusiast"];
-  let i = 0, j = 0, currentText = "", isDeleting = false;
+  <footer>
+    &copy; 2025 Maneet Chatterjee — Made with 🛠️, ☕ & 🚀
+  </footer>
 
-  function type() {
-    if (i < textArray.length) {
-      if (!isDeleting && j <= textArray[i].length) {
-        currentText = textArray[i].substring(0, j++);
-      } else if (isDeleting && j > 0) {
-        currentText = textArray[i].substring(0, j--);
-      } else {
-        isDeleting = !isDeleting;
-        if (!isDeleting) i = (i + 1) % textArray.length;
-      }
-      document.getElementById("typing-text").textContent = currentText;
-      setTimeout(type, isDeleting ? 40 : 100);
-    }
-  }
-  type();
-</script>
-
-<!-- Auto Page Scroll -->
-<script>
-  const sections = ["section1", "section2", "section3", "section4"];
-  let secIndex = 0;
-  setInterval(() => {
-    secIndex = (secIndex + 1) % sections.length;
-    document.getElementById(sections[secIndex]).scrollIntoView({ behavior: 'smooth' });
-  }, 8000); // 8 seconds per section
-</script>
-
+  <!-- Initialize Particles.js -->
+  <script>
+    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json', function() {
+      console.log('particles.js loaded.');
+    });
+  </script>
+  <!-- Initialize Typed.js -->
+  <script>
+    new Typed('#typed-text', {
+      strings: ['Mechanical Engineer', 'Robotics Researcher', 'IoT Innovator', 'ML Explorer', 'Quantum Enthusiast'],
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 2000,
+      loop: true
+    });
+  </script>
+  <!-- Initialize AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script> AOS.init({ duration: 1000, once: true }); </script>
 </body>
 </html>
