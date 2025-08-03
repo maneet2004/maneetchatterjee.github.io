@@ -3,78 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maneet Chatterjee | Portfolio</title>
+  <title>Maneet Chatterjee | Animated GitHub Page</title>
+  
   <!-- Google Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
-  <!-- Particles.js (background) -->
+  <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <!-- Typed.js (typewriter) -->
+  <!-- Typed.js -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- Lottie Player -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <style>
     /* Reset & Base */
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
     html, body { width:100%; height:100%; overflow-x:hidden; background:#0d0d0d; color:#f0f0f0; }
     a { color: inherit; text-decoration:none; }
-    img { max-width:100%; display:block; }
+    img, lottie-player { display:block; max-width:100%; }
 
     /* Particles Canvas */
     #particles-js { position:fixed; width:100%; height:100%; z-index:-1; top:0; left:0; }
 
-    /* Container */
-    .section { padding:100px 5%; position:relative; }
+    /* Sections */
+    section, header { padding:100px 5%; position:relative; }
     h1, h2, h3 { margin-bottom:1rem; color:#00ffee; }
     p { line-height:1.6; margin-bottom:1rem; }
+    .btn { display:inline-block; padding:12px 24px; border:2px solid #00ffee; border-radius:4px;
+           color:#00ffee; transition:all .3s; }
+    .btn:hover { background:#00ffee; color:#0d0d0; }
 
     /* Hero */
     #hero {
       height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column;
-      text-align:center; background:rgba(0,0,0,0.5);
+      text-align:center;
     }
-    #hero img { width:180px; height:180px; border-radius:50%; border:4px solid #00ffee; margin-bottom:1rem; }
-    #hero .btn { margin-top:1rem; padding:12px 24px; border:2px solid #00ffee; border-radius:4px;
-      color:#00ffee; transition:all .3s; }
-    #hero .btn:hover { background:#00ffee; color:#0d0d0; }
-
-    /* Social Icons */
-    .socials { margin-top:1.5rem; }
-    .socials a { margin:0 10px; font-size:1.5rem; transition:color .3s; }
-    .socials a:hover { color:#58a6ff; }
-
-    /* Sections */
-    .section-title { text-align:center; font-size:2.2rem; margin-bottom:2rem; position:relative; }
-    .section-title::after { content:''; width:80px; height:4px; background:#00ffee; display:block; margin:8px auto 0; }
+    #hero img { width:180px; height:180px; border-radius:50%; border:4px solid #00ffee; margin-bottom:1rem; animation:spin 20s linear infinite; }
+    @keyframes spin { from {transform:rotate(0deg);} to {transform:rotate(360deg);} }
+    .scroll-down {
+      position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+      color:#00ffee; font-size:2rem; animation:bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100% {transform:translateY(0);} 50% {transform:translateY(-15px);} }
 
     /* About */
-    #about .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center; }
-    #about img { border-radius:10px; box-shadow:0 0 20px rgba(0,255,238,.3); }
-    @media(max-width:768px) { #about .about-grid { grid-template-columns:1fr; } }
-
-    /* Tech Stack */
-    .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1rem; text-align:center; }
-    .tech-grid img { width:80px; margin:auto; }
+    #about { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+    #about .text { flex:1; min-width:280px; }
+    #about lottie-player { flex:1; max-width:400px; margin:auto; }
 
     /* Projects */
-    .projects { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
-    .project-card { background:#121212; border-radius:10px; overflow:hidden; box-shadow:0 0 20px rgba(0,0,0,.5); transition:transform .3s; }
+    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+    .project-card { background:#121212; border-radius:10px; overflow:hidden; box-shadow:0 0 20px rgba(0,0,0,.5);
+                    transition:transform .3s; }
     .project-card:hover { transform:translateY(-5px); }
     .project-card img { width:100%; height:180px; object-fit:cover; }
     .project-card .content { padding:1rem; }
-    @media(max-width:768px) { .projects { grid-template-columns:1fr; } }
 
-    /* Stats */
-    .stats img { margin:0.5rem; border-radius:10px; }
-
-    /* Footer */
-    footer { text-align:center; padding:2rem 0; background:#111; font-size:0.9rem; color:#777; margin-top:3rem; }
+    /* Contact */
+    #contact .icons a { margin:0 15px; font-size:1.8rem; transition:transform .3s; }
+    #contact .icons a:hover { transform:scale(1.2); color:#58a6ff; }
   </style>
 </head>
 
 <body>
-  <!-- Particles Background -->
+  <!-- Animated Background -->
   <div id="particles-js"></div>
 
   <!-- Hero Section -->
@@ -83,51 +78,31 @@
     <h1>Hi, I'm <span style="color:#58a6ff">Maneet Chatterjee</span></h1>
     <h3><span id="typed-text"></span></h3>
     <a href="resume.pdf" class="btn" target="_blank">View Resume</a>
-    <div class="socials" data-aos="fade-up">
-      <a href="https://github.com/maneet2004" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/maneet-chatterjee-778441190" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="mailto:mphys2022@gmail.com"><i class="fas fa-envelope"></i></a>
-      <a href="https://x.com/maneet2018" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.kaggle.com/maneetchatterjee" target="_blank"><i class="fab fa-kaggle"></i></a>
-    </div>
+    <div class="scroll-down"><i class="fas fa-angle-down"></i></div>
   </header>
 
   <!-- About Section -->
-  <section id="about" class="section" data-aos="fade-right">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-grid">
-      <div>
-        <p>🎓 <strong>3rd Year B.Tech, Mechanical Engineering</strong> @ IIEST Shibpur</p>
-        <p>🤖 Building real-time robotics systems, digital twins & intelligent control pipelines.</p>
-        <p>🧠 Applying <strong>ML/DL</strong> & <strong>Quantum Computing</strong> in IoT, automation, and physics-based simulations.</p>
-        <p>🚀 Internships & Projects in Industrial IoT, Robotic Simulations, Digital Manufacturing.</p>
-      </div>
-      <img src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif" alt="Robotics GIF" />
+  <section id="about" data-aos="fade-right">
+    <div class="text">
+      <h2>About Me</h2>
+      <p>🎓 3rd Year B.Tech, Mechanical Engineering @ IIEST Shibpur</p>
+      <p>🤖 Building real-time robotics systems, digital twins & intelligent control pipelines.</p>
+      <p>🧠 Applying ML/DL & Quantum Computing in IoT, automation, and physics-based simulations.</p>
     </div>
-  </section>
-
-  <!-- Tech Stack Section -->
-  <section id="tech" class="section" data-aos="fade-left">
-    <h2 class="section-title">Tech Stack</h2>
-    <div class="tech-grid">
-      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-      <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++"/>
-      <img src="https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ros&logoColor=white" alt="ROS"/>
-      <img src="https://img.shields.io/badge/MQTT-FF6F00?style=for-the-badge&logo=mqtt&logoColor=white" alt="MQTT"/>
-      <img src="https://img.shields.io/badge/InfluxDB-22ADF6?style=for-the-badge&logo=influxdb&logoColor=white" alt="InfluxDB"/>
-      <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white" alt="Grafana"/>
-      <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
-      <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow"/>
-      <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV"/>
-    </div>
+    <lottie-player 
+      src="https://assets2.lottiefiles.com/packages/lf20_5ngs2ksb.json"  
+      background="transparent"  speed="1"  
+      style="width: 100%; max-width: 400px;"  
+      loop autoplay>
+    </lottie-player>
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="section" data-aos="fade-up">
-    <h2 class="section-title">Featured Projects</h2>
+  <section id="projects" data-aos="fade-up">
+    <h2>Featured Projects</h2>
     <div class="projects">
       <div class="project-card" data-aos="zoom-in">
-        <img src="https://i.gifer.com/embedded/download/7XY.gif" alt="Vibration Monitor GIF"/>
+        <img src="https://i.gifer.com/embedded/download/7XY.gif" alt="Vibration Monitor"/>
         <div class="content">
           <h3>🛠️ IoT-Based Vibration Monitor</h3>
           <p>ESP32 → MQTT & WebSockets → InfluxDB & Grafana dashboards for predictive maintenance.</p>
@@ -135,44 +110,38 @@
         </div>
       </div>
       <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-        <img src="https://i.gifer.com/embedded/download/3o6ZsU1WNFd45E6PJK.gif" alt="Robotic Sorting GIF"/>
+        <img src="https://i.gifer.com/embedded/download/3o6ZsU1WNFd45E6PJK.gif" alt="Robotic Sorting"/>
         <div class="content">
           <h3>🤖 Robotic Sorting System</h3>
-          <p>Real-time pick-and-place using camera, computer vision & physics-based simulation (Blender/Isaac).</p>
+          <p>Real-time pick-and-place using camera, computer vision & physics-based simulation.</p>
           <a href="#" class="btn">View Demo</a>
         </div>
       </div>
-      <!-- Add more project cards as needed -->
-    </div>
-  </section>
-
-  <!-- GitHub Stats Section -->
-  <section id="stats" class="section" data-aos="fade-up">
-    <h2 class="section-title">GitHub Stats</h2>
-    <div class="stats" style="text-align:center;">
-      <img src="https://github-readme-stats.vercel.app/api?username=maneet2004&show_icons=true&theme=tokyonight&count_private=true" alt="GitHub Stats" />
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=maneet2004&layout=compact&theme=tokyonight" alt="Top Languages" />
+      <!-- Add more cards as desired -->
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="section" data-aos="fade-up">
-    <h2 class="section-title">Get In Touch</h2>
-    <p style="text-align:center;">✉️ <a href="mailto:mphys2022@gmail.com">mphys2022@gmail.com</a> •  
-      🐦 <a href="https://x.com/maneet2018">@maneet2018</a> •  
-      🔗 <a href="https://linkedin.com/in/maneet-chatterjee-778441190">LinkedIn</a>
-    </p>
+  <section id="contact" data-aos="fade-up">
+    <h2>Get In Touch</h2>
+    <div class="icons" style="text-align:center;">
+      <a href="mailto:mphys2022@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/maneet2004" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/maneet-chatterjee-778441190" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://x.com/maneet2018" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
   </section>
 
-  <footer>
-    &copy; 2025 Maneet Chatterjee — Made with 🛠️, ☕ & 🚀
+  <footer style="text-align:center; padding:2rem 0; background:#111; color:#777;">
+    &copy; 2025 Maneet Chatterjee — Made with 🛠️ & ☕
   </footer>
 
   <!-- Initialize Particles.js -->
   <script>
-    particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json', function() {
-      console.log('particles.js loaded.');
-    });
+    particlesJS.load('particles-js', 
+      'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json', 
+      () => console.log('particles.js loaded')
+    );
   </script>
   <!-- Initialize Typed.js -->
   <script>
