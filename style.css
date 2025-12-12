@@ -1,107 +1,66 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #000;
-    color: #fff;
-    /* Smooth scrolling for a better feel, though optional */
-    scroll-behavior: smooth; 
+    /* We make the body height very large. The video scroll height will be determined by JS */
 }
 
 /* --- Video Container and Element --- */
 
-/* Make the video container fixed to the viewport */
 #video-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1; /* Place it behind the main content */
+    z-index: -1; 
     overflow: hidden;
-    /* Optional: Ensure a smooth visual transition on certain properties */
-    transition: opacity 0.5s ease;
 }
 
-/* Style the video to cover the entire container */
 #f1-video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures video fills the space without distortion */
+    object-fit: cover; 
 }
 
-/* --- Scroll Target and Content Sections --- */
+/* --- Scroll Target and Prompts --- */
 
-/* Style the section that the user scrolls over */
+/* The element that creates the scrollable height */
 #scroll-target {
-    position: relative; /* Must be positioned above the fixed video */
-    background-color: rgba(0, 0, 0, 0); /* Make background transparent to see video */
-    z-index: 1; /* Place it above the video */
+    /* Critical: Set a very large height to enable scrolling */
+    min-height: 500vh; 
+    position: relative;
+    z-index: 1; /* Place above the video */
+    pointer-events: none; /* Allows clicks/taps to pass through */
+}
+
+/* The prompt text guiding the user */
+#scroll-prompt {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF;
     text-align: center;
-    padding: 0;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 40px;
+    border-radius: 10px;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    z-index: 10;
 }
 
-.intro-section, .outro-section {
-    height: 100vh; /* Use 100vh for full-screen introductory/ending slides */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.4); /* Slight overlay for text readability */
+#scroll-prompt h1 {
+    font-size: 3em;
+    margin: 0;
 }
-
-h1 {
-    font-size: 4em;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
-}
-
-.scroll-prompt {
-    font-size: 1.5em;
-    margin-top: 50px;
-    /* Simple animation to prompt scrolling */
+#scroll-prompt p {
+    font-size: 2em;
     animation: bounce 1.5s infinite;
 }
 
-/* The section that provides the scrolling space for the scrubbing effect */
-.scrub-space {
-    /* Height is set inline in index.html (e.g., 350vh) */
-    position: relative;
-    /* This section is completely transparent so the fixed video is the focus */
-}
-
-/* Overlay Text Styles (Appearing during the scrub) */
-.overlay-text {
-    position: absolute;
-    top: 0; /* Positioned relative to the scrub-space */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    width: 80%;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    transition: opacity 0.3s ease; /* Smooth fading */
-    
-    /* Using CSS Variables for placement (set in index.html) */
-    /* You'll need JavaScript to make these elements visible based on scroll */
-}
-
-/* --- Simple Animation --- */
-
+/* Simple animation for the scroll prompt */
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-20px);
-    }
-}
-
-/* --- Media Queries for Mobile/Tablet --- */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5em;
-    }
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
 }
