@@ -1,3 +1,4 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -13,3 +14,32 @@ build/
 .pytest_cache/
 .coverage
 htmlcov/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# PyBullet
+*.bullet
+*.urdf~
+
+# Outputs (optional - uncomment if you don't want to track generated files)
+# outputs/architecture_diagrams/*.png
+# outputs/ablation_study/*.png
+# outputs/animations/*.gif
+# outputs/benchmark_results/*.png
