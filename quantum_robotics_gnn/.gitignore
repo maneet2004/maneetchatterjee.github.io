@@ -1,24 +1,31 @@
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+*.py[cod]
+*$py.class
 *.so
-*.egg
-*.egg-info/
-dist/
+.Python
 build/
-*.log
-.ipynb_checkpoints/
-.pytest_cache/
-.coverage
-htmlcov/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
 venv/
 env/
 ENV/
 
-# IDE
+# IDEs
 .vscode/
 .idea/
 *.swp
@@ -31,15 +38,8 @@ Thumbs.db
 
 # Temporary files
 *.tmp
-*.temp
-.cache/
+*.bak
+*.log
 
-# PyBullet
-*.bullet
-*.urdf~
-
-# Outputs (optional - uncomment if you don't want to track generated files)
-# outputs/architecture_diagrams/*.png
-# outputs/ablation_study/*.png
-# outputs/animations/*.gif
-# outputs/benchmark_results/*.png
+# Large binary files (keep generated ones)
+# (Generated animations and diagrams are tracked)
