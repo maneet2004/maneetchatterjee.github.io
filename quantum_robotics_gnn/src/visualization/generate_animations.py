@@ -176,7 +176,8 @@ class AnimationGenerator:
         """Generate visualization of quantum state evolution."""
         print("Generating quantum state evolution visualization...")
         
-        fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+        fig = plt.figure(figsize=(12, 10))
+        axes = [fig.add_subplot(2, 2, i+1, projection='3d') for i in range(4)]
         
         # Qubit state evolution
         frames = 60
@@ -186,7 +187,7 @@ class AnimationGenerator:
             t = frame / frames * 2 * np.pi
             
             # Qubit amplitudes
-            for ax_idx, ax in enumerate(axes.flat):
+            for ax_idx, ax in enumerate(axes):
                 ax.clear()
                 qubit_idx = ax_idx
                 
